@@ -1,0 +1,23 @@
+{
+	"name": "msi-backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"test": "test",
+		"start": "node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Student237988/msi-backend.git"
+	},
+	"author": "Aleksander Nadziejko, Kacper Kozimor",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Student237988/msi-backend/issues"
+	},
+	"homepage": "https://github.com/Student237988/msi-backend#readme",
+	"dependencies": {
+		"mongodb": "^4.4.1"
+	}
+}
