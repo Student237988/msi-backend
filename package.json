@@ -18,6 +18,10 @@
 	},
 	"homepage": "https://github.com/Student237988/msi-backend#readme",
 	"dependencies": {
-		"mongodb": "^4.4.1"
+		"body-parser": "^1.20.0",
+		"cors": "^2.8.5",
+		"es-check": "^6.2.1",
+		"express": "^4.17.3",
+		"mongoose": "^6.2.9"
 	}
 }
