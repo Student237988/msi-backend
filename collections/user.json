@@ -1,0 +1,13 @@
+[
+	{
+		"login": "username",
+		"name": "name and surname",
+		"password": "hash",
+		"depos": [
+			{
+				"depo_id": "depo id",
+				"role_id": "role_id"
+			}
+		]
+	}
+]
