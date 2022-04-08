@@ -1,3 +1,5 @@
+//to remove?
+
 const mongoose = require("mongoose");
 const dbConfig = require("../config/db_config");
 const { users } = require("./schemas");

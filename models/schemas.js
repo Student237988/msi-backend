@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const User = new mongoose.Schema(
 	{
 		id: mongoose.Schema.Types.String,
@@ -27,7 +28,7 @@ const Category = new mongoose.Schema({
 module.exports.categorySchema = Category;
 module.exports.categories = mongoose.model("category", Category, "category");
 
-const Depo = new mongoose.Depo({
+const Depo = new mongoose.Schema({
 	id: mongoose.Schema.Types.String,
 	name: mongoose.Schema.Types.String,
 	email: mongoose.Schema.Types.String,

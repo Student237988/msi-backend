@@ -1,6 +1,8 @@
+//to remove?
+
 "use strict";
 
-const { getUsers } = require("../model/users");
+const { getUsers } = require("./models/users");
 
 module.exports = (app) => {
 	app.get("/users", async (req, res) => {
