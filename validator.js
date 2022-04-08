@@ -1,6 +1,6 @@
 const { check } = require("express-validator");
 
-exports.validateUser = [
+module.exports.validateUser = [
   check("login", "Login has invalid form").isEmail(),
   check("password", "Password must contains at least 8 characters").isLength({
     min: 8,

@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const bcrypt = require("bcrypt");
 const User = require("../models/user.model.js");
 
 //for test purpose
@@ -22,10 +23,11 @@ exports.create = async (req, res) => {
     const newUser = new User();
     newUser.login = req.body.login;
     newUser.name = req.body.name;
-    newUser.password = req.body.password;
+    const salt = await bcrypt.genSalt(10);
+    newUser.password = await bcrypt.hash(req.body.password, salt);
     await newUser.save(newUser);
     res.status(201).json({
-      message: 'New user created'
+      message: "New user created",
     });
   } catch (error) {
     res.status(500).json({
