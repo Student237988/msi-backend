@@ -28,6 +28,7 @@ mongoose
 // require("./routes/user.js")(app);
 require("./routes/user.routes.js")(app);
 require("./routes/depo.routes.js")(app);
+require("./routes/role.routes.js")(app);
 
 app.listen(process.env.PORT || 8080, () => {
 	console.log("Server is running on port ", process.env.PORT || 8080);

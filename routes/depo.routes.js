@@ -5,8 +5,9 @@ module.exports = (app) => {
 	const auth = require("../middleware/auth.js");
 
 	router.get("/", auth, depoController.findAll);
-	router.post("/new/", auth, depoController.create);
-	router.patch("/update/", auth, depoController.update);
+	router.get("/byUser", auth, depoController.findByUser);
+	router.post("/new", auth, depoController.create);
+	router.patch("/update", auth, depoController.update);
 
 	app.use("/api/depos", router);
 };
