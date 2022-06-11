@@ -32,15 +32,22 @@ module.exports.create = async (req, res) => {
 	}
 
 	try {
-		const { name, email, phone, address } = req.body;
-		const { city, post_code, street, building, premises } = address;
-		const depo = new Depo({ name, email, phone, address });
-
-		await depo.save(depo);
-
-		res.status(201).json({
-			message: "New depo created"
+		const { name, email, phone, city, post_code, street, building, lat, lng } =
+			req.body;
+		const depo = new Depo({
+			name,
+			email,
+			phone,
+			city,
+			post_code,
+			street,
+			building,
+			lat,
+			lng
 		});
+		const create = await Depo.create(depo);
+
+		res.status(201).json(create);
 	} catch (error) {
 		res.status(500).json({
 			message: error.message || "Some error occured while creating depo"
@@ -56,13 +63,16 @@ module.exports.update = async (req, res) => {
 	}
 
 	try {
-		const { name, email, phone, address, receipts_diaries } = req.body;
-		const filter = { name: name };
-		const update = await Depo.findOneAndUpdate(filter, req.body, {
+		const updateId = req.get("infoPointId");
+		if (!updateId) throw new Error("infoPointId header is missing");
+		const { name, email, phone, city, post_code, street, building, lat, lng } =
+			req.body;
+		const update = await Depo.findByIdAndUpdate(updateId, req.body, {
 			new: true,
-			upsert: true,
 			rawResult: true // Return the raw result from the MongoDB driver
 		});
+		if (update.value == null)
+			throw new Error(`Could not update depo with id ${updateid}`);
 		res.status(200).json(update.value);
 	} catch (error) {
 		res.status(500).json({
