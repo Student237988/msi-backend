@@ -12,22 +12,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const url = `mongodb://${dbConfig.username}:${dbConfig.password}@${dbConfig.host}:${dbConfig.port}/${dbConfig.database}`;
 
 mongoose
-  .connect(url, {
-    useNewUrlParser: true,
-    auth: {
-      username: dbConfig.username,
-      password: dbConfig.password,
-    },
-    authSource: "admin",
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
-  .then(() => console.log("Connected to the database!"))
-  .catch((error) => console.log("Cannot connect to the database!", error));
+	.connect(url, {
+		useNewUrlParser: true,
+		auth: {
+			username: dbConfig.username,
+			password: dbConfig.password
+		},
+		authSource: "admin",
+		useUnifiedTopology: true,
+		useNewUrlParser: true
+	})
+	.then(() => console.log("Connected to the database!"))
+	.catch((error) => console.log("Cannot connect to the database!", error));
 
 // require("./routes/user.js")(app);
 require("./routes/user.routes.js")(app);
+require("./routes/depo.routes.js")(app);
 
 app.listen(process.env.PORT || 8080, () => {
-  console.log("Server is running on port ", process.env.PORT || 8080);
+	console.log("Server is running on port ", process.env.PORT || 8080);
 });
