@@ -43,7 +43,30 @@ module.exports.create = async (req, res) => {
 		});
 	} catch (error) {
 		res.status(500).json({
-			message: error.message || "Some error occured while creating depos"
+			message: error.message || "Some error occured while creating depo"
+		});
+	}
+};
+
+module.exports.update = async (req, res) => {
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
+
+	try {
+		const { name, email, phone, address, receipts_diaries } = req.body;
+		const filter = { name: name };
+		const update = await Depo.findOneAndUpdate(filter, req.body, {
+			new: true,
+			upsert: true,
+			rawResult: true // Return the raw result from the MongoDB driver
+		});
+		res.status(200).json(update.value);
+	} catch (error) {
+		res.status(500).json({
+			message: error.message || "Some error occured while updating depo"
 		});
 	}
 };

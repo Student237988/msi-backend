@@ -6,6 +6,7 @@ module.exports = (app) => {
 
 	router.get("/", auth, depoController.findAll);
 	router.post("/new/", auth, depoController.create);
+	router.patch("/update/", auth, depoController.update);
 
 	app.use("/api/depos", router);
 };
